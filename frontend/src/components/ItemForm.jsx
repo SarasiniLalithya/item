@@ -5,7 +5,8 @@ function ItemForm({ initialValues, onSubmit, submitText }) {
     initialValues || {
       name: "",
       category: "",
-      price: "",
+      price: 0,
+      stockQuantity: 0,
       description: "",
       imageUrl: "",
     }
@@ -21,9 +22,11 @@ function ItemForm({ initialValues, onSubmit, submitText }) {
     onSubmit({
       ...formData,
       price: Number(formData.price),
-    });
-  };
+      stockQuantity: Number(formData.stockQuantity),
 
+    });
+  
+  };
   return (
     <form className="form-card" onSubmit={handleSubmit}>
       <h2>{submitText}</h2>
@@ -42,6 +45,14 @@ function ItemForm({ initialValues, onSubmit, submitText }) {
         onChange={handleChange}
         required
       />
+      <label>Stock Quantity</label>
+<input
+  type="number"
+  name="stockQuantity"              
+  value={formData.stockQuantity}    
+  onChange={handleChange}
+  required
+/>
 
       <label>Description</label>
       <textarea
